@@ -3,6 +3,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var cors = require('cors');
 
+var peliculasController = require('./controladores/peliculasController');
+
 var app = express();
 
 app.use(cors());
@@ -13,10 +15,12 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
+//routing
+// app.get('/saludar', saludadorController.saludar);
+
 //seteamos el puerto en el cual va a escuchar los pedidos la aplicación
 var puerto = '8080';
 
 app.listen(puerto, function () {
   console.log( "Escuchando en el puerto " + puerto );
 });
-
