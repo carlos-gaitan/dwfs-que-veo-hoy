@@ -1,12 +1,12 @@
-var con = require('../lib/conexionbd');
+var conexion = require('../lib/conexionbd');
 
 function listadoPeliculas(req, res) {
   var consultaSql = SELECT * from pelicula;
-  con.query(consultaSql, function(err, res){
+  conexion.query(consultaSql, function(error, resultadoQuery){
     if (err || !res.length){
-      return cb({ error: true, message: "error." })
+      return { error: true, message: "error." }
     }
-    cb(null, res[0])
+    res.send({resultadoQuery});
   })
 
  	// var listado = req.query.nombre;
@@ -15,5 +15,5 @@ function listadoPeliculas(req, res) {
 }
 
 module.exports = {
-	listadoPeliculas : listadoPeliculas
+	listadoPeliculas: listadoPeliculas
 };
