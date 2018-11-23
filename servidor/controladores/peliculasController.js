@@ -1,19 +1,17 @@
 var conexion = require('../lib/conexionbd');
 
-function listadoPeliculas(req, res) {
-  var consultaSql = SELECT * from pelicula;
+function obtenerPeliculas(req, res) {
+  console.log("Entro a obtenerPeliculas");
+  var consultaSql = "SELECT * from pelicula";
   conexion.query(consultaSql, function(error, resultadoQuery){
-    if (err || !res.length){
+    if (error || !resultadoQuery.length){
       return { error: true, message: "error." }
     }
-    res.send({resultadoQuery});
+    res.send(JSON.stringify({ peliculas: resultadoQuery }));
+    //res.send({ peliculas: resultadoQuery });
   })
-
- 	// var listado = req.query.nombre;
-  //
- 	// res.send("Hola "+nombre+", hoy es "+dia+" de "+mes_nombre+" de "+año);
 }
 
 module.exports = {
-	listadoPeliculas: listadoPeliculas
+	obtenerPeliculas: obtenerPeliculas
 };
