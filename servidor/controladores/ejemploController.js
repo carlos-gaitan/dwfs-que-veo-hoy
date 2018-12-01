@@ -1,3 +1,4 @@
+//https://github.com/acamica-dwfs-bue-vil-1/ea-9-que-veo-hoy/blob/master/servidor/controladores/controladorPeliculas.js
 // var connection = require('../lib/conexionbd');
 //
 // function buscarPeliculas (req, res) {
