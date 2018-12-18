@@ -1,16 +1,13 @@
-var conexion = require('../lib/conexionbd');
+var Peliculas = require('../modelos/peliculas');
 
 function obtenerPeliculas(req, res) {
-  console.log("Entro a obtenerPeliculas");
-  var consultaSql = "SELECT * from pelicula";
-  conexion.query(consultaSql, function(error, resultadoQuery){
-    if (error || !resultadoQuery.length){
-      return { error: true, message: "error." }
-    }
-    res.send(JSON.stringify({ peliculas: resultadoQuery }));
-    //res.send({ peliculas: resultadoQuery });
-  })
-}
+  Peliculas.obtenerTodos(function(error, resultadoQuery){
+  if (error){
+    return res.status(500).json("error en el servidor");
+  }
+  res.json({ peliculas: resultadoQuery });
+});
+};
 
 module.exports = {
 	obtenerPeliculas: obtenerPeliculas

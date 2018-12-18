@@ -7,6 +7,8 @@ var cors = require('cors');
 var app = express();
 
 var peliculasController = require('./controladores/peliculasController');
+var generosController = require('./controladores/generosController');
+
 app.use(cors());
 
 app.use(bodyParser.urlencoded({
@@ -17,6 +19,7 @@ app.use(bodyParser.json());
 
 //routing
 app.get('/peliculas', peliculasController.obtenerPeliculas);
+app.get('/generos', generosController.obtenerGeneros);
 
 //seteamos el puerto en el cual va a escuchar los pedidos la aplicación
 var puerto = '8080';

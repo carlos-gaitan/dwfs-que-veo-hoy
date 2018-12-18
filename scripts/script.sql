@@ -14,3 +14,10 @@ CREATE TABLE `pelicula` (
     `trama` varchar(700) DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
+
+CREATE TABLE `genero` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `nombre` varchar(30) NOT NULL,
+
+  PRIMARY KEY (`id`)
+);
