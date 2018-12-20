@@ -13,7 +13,8 @@ CREATE TABLE `pelicula` (
     `poster` varchar(300) DEFAULT NULL,
     `trama` varchar(700) DEFAULT NULL,
     `genero_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`genero_id`) REFERENCES genero(`id`),
 );
 
 -- el campo genero_id Ya se agrego!
