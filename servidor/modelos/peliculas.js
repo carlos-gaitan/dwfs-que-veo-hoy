@@ -24,6 +24,7 @@ Pelicula.obtenerCantidad = function(filtros, cb){
 
   var contador = 0;
   var consultaSql = "SELECT COUNT(pelicula.id) from pelicula INNER JOIN genero ON pelicula.genero_id = genero.id";
+
   // condiciones
   if (titulo) {
     if (contador == 0) {
@@ -34,7 +35,6 @@ Pelicula.obtenerCantidad = function(filtros, cb){
     contador ++;
     consultaSql += " pelicula.titulo LIKE '" + titulo + "%'";
   };
-//select * from pelicula join  where ;
 
   if (genero) {
     if (contador == 0) {
@@ -58,9 +58,8 @@ Pelicula.obtenerCantidad = function(filtros, cb){
 
 
   consultaSql += ";";
-  console.log(consultaSql);
+  //console.log(consultaSql);
   conexion.query(consultaSql, cb);
-
 };
 
 Pelicula.obtenerTodos = function(filtros, cb){
@@ -115,7 +114,16 @@ Pelicula.obtenerTodos = function(filtros, cb){
 
 
   consultaSql += ";";
-  console.log(consultaSql);
+  //console.log(consultaSql);
+  conexion.query(consultaSql, cb);
+};
+
+Pelicula.obtenerInfo = function(id, cb){
+  var id = id;
+  console.log("se buscara info de pelicula con id: " + id);
+  //var consultaSql= `SELECT * FROM pelicula INNER JOIN genero ON genero_id = genero.id WHERE pelicula.id = ${id}`;
+  //consultaSqlParaActor = `SELECT * FROM actor_pelicula INNER JOIN actor ON actor_id = actor.id WHERE pelicula_id = ${id}`;
+  var consultaSql = `SELECT P.poster, P.titulo, P.anio, P.trama, P.fecha_lanzamiento, P.director, P.duracion, P.puntuacion, G.nombre as genero, A.nombre as Actores from pelicula as P left join genero as G on P.genero_id = G.id left join actor_pelicula as AP on P.id = AP.pelicula_id left join actor as A on AP.actor_id = A.id where P.id = ${id}`;
   conexion.query(consultaSql, cb);
 };
 

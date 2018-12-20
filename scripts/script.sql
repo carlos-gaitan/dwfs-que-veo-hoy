@@ -12,12 +12,33 @@ CREATE TABLE `pelicula` (
     `puntuacion` int(2) DEFAULT NULL,
     `poster` varchar(300) DEFAULT NULL,
     `trama` varchar(700) DEFAULT NULL,
+    `genero_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 );
+
+-- el campo genero_id Ya se agrego!
+-- ALTER TABLE pelicula ADD genero_id int(11) NOT NULL;
 
 CREATE TABLE `genero` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `nombre` varchar(30) NOT NULL,
 
   PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `actor` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `nombre` varchar(70) NOT NULL,
+
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `actor_pelicula` (
+    `id` int(11) NOT NULL AUTO_INCREMENT,
+    `actor_id` int(11) NOT NULL,
+    `pelicula_id` int(11) NOT NULL,
+
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`actor_id`) REFERENCES actor(`id`),
+  FOREIGN KEY (`pelicula_id`) REFERENCES pelicula(`id`)
 );

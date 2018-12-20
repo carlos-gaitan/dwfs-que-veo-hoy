@@ -7,16 +7,25 @@ function obtenerPeliculas(req, res) {
     return res.status(500).json("error en el servidor");
   }
     Peliculas.obtenerCantidad(req.query, function(error, resultadoObtenerCantidad){
+      if (error){
+        return res.status(500).json("error en el servidor");
+      }
+      res.json({ peliculas: resultadoObtenerTodos, total: resultadoObtenerCantidad[0] });
+    });
+  });
+};
+
+function obtenerInfoPelicula(req, res){
+  Peliculas.obtenerInfo(req.params.id, function(error, resultadoObtenerInfo){
     if (error){
       return res.status(500).json("error en el servidor");
     }
-
-
-  res.json({ peliculas: resultadoObtenerTodos, total: resultadoObtenerCantidad);///poner corchete
-});
-})
+    console.log(resultadoObtenerInfo[0].genero);
+    res.json({ pelicula: resultadoObtenerInfo[0], genero: resultadoObtenerInfo[0].genero, actores: resultadoObtenerInfo.map(function(s) {return {nombre: s.Actores};}) });
+  });
 };
 
 module.exports = {
-	obtenerPeliculas: obtenerPeliculas
+	obtenerPeliculas: obtenerPeliculas,
+  obtenerInfoPelicula: obtenerInfoPelicula
 };
