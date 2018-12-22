@@ -4,11 +4,11 @@ var Peliculas = require('../modelos/peliculas');
 function obtenerPeliculas(req, res) {
   Peliculas.obtenerTodos(req.query, function(error, resultadoObtenerTodos){
   if (error){
-    return res.status(500).json("error en el servidor");
+    return res.status(500).json("error en el servidor msj #1");
   }
     Peliculas.obtenerCantidad(req.query, function(error, resultadoObtenerCantidad){
       if (error){
-        return res.status(500).json("error en el servidor");
+        return res.status(500).json("error en el servidor msj #2");
       }
       res.json({ peliculas: resultadoObtenerTodos, total: resultadoObtenerCantidad[0].totalPeliculas });
     });
@@ -18,19 +18,19 @@ function obtenerPeliculas(req, res) {
 function obtenerInfoPelicula(req, res){
   Peliculas.obtenerInfo(req.params.id, function(error, resultadoObtenerInfo) {
     if (error) {
-      return res.status(500).json("error en el servidor");
+      return res.status(500).json("error en el servidor msj #3");
     }
     res.json({ pelicula: resultadoObtenerInfo[0], genero: resultadoObtenerInfo[0].genero, actores: resultadoObtenerInfo.map(function(s) {return {nombre: s.Actores};}) });
   });
 };
 
 function obtenerPeliculaRecomendada(req, res) {
-  console.log("putamadre");
   Peliculas.obtenerRecomendadas(req.query, function(error, resultadoObtenerRecomendadas) {
     if (error) {
-      return res.status(500).json("error en el servidor");
+      return res.status(500).json("error en el servidor msj #5");
     }
-    res.json({ peliculas: resultadoObtenerRecomendas });
+    console.log(resultadoObtenerRecomendadas);
+    res.json({ peliculas: resultadoObtenerRecomendadas });
   });
 };
 

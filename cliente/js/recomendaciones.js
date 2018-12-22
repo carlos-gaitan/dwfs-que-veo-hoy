@@ -113,9 +113,9 @@ function ControladorRecomendaciones() {
 
         if (Object.keys(query_params).length !== 0) {
             var query = $.param(query_params);
-            var ruta = "/peliculas/recomendacion?"
+            var ruta = "/recomendacion?"
         } else {
-            var ruta = "/peliculas/recomendacion";
+            var ruta = "/recomendacion";
             var query = "";
         }
 
@@ -127,7 +127,7 @@ function ControladorRecomendaciones() {
                 var peliculas_desordenadas = self.desordenarArray(data.peliculas);
                 //se guardan las peliculas desordenadas
                 self.resultados = peliculas_desordenadas;
-                // se ejecuta la funcion seleccionarPelicula() 
+                // se ejecuta la funcion seleccionarPelicula()
                 self.seleccionarPelicula();
             });
 

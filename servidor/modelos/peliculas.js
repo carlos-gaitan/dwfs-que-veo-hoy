@@ -131,19 +131,17 @@ Pelicula.obtenerRecomendadas = function(filtros, cb) {
   var anio_inicio = filtros.anio_inicio;
   var anio_fin = filtros.anio_fin;
   var puntuacion = filtros.puntuacion;
-  //http://localhost:8080/peliculas/recomendacion?genero=Comedy&anio_inicio=2005&anio_fin=2020
-  var consultaSql = `SELECT P.id,P.poster, P.trama, P.titulo, G.nombre FROM pelicula as P LEFT JOIN genero as G ON P.genero_id = G.id WHERE`;
-  //SELECT P.id,P.poster, P.trama, P.titulo, G.nombre FROM pelicula as P LEFT JOIN genero as G ON P.genero_id = G.id WHERE G.nombre = Comedy
+
+  var consultaSql = `SELECT P.id,P.poster, P.trama, P.titulo, G.nombre FROM pelicula as P LEFT JOIN genero as G ON P.genero_id = G.id WHERE 1 = 1`;
+
   //genero el where segun esten informados los criterios
-  if (genero) {consultaSql += ` G.nombre = "${genero}" AND`;};
-  if (anio_inicio) {consultaSql += ` P.anio >= ${anio_inicio} AND`;}
-  if (anio_fin) {consultaSql += ` P.anio <= ${anio_fin} AND`;}
-  if (puntuacion) {consultaSql += ` P.puntuacion = ${puntuacion} AND`;}
+  if (genero) { consultaSql += ` AND G.nombre = "${genero}"` };
+  if (anio_inicio) { consultaSql += ` AND P.anio >= ${anio_inicio}` };
+  if (anio_fin) { consultaSql += ` AND P.anio <= ${anio_fin}` };
+  if (puntuacion) { consultaSql += ` AND P.puntuacion = ${puntuacion}` };
 
+  consultaSql += `;`;
 
-  //quito el and sobrante y pongo ;
-  consultaSql = consultaSql.substr(0, consultaSql.length - 3) + `;`;
-  console.log(consultaSql);
   conexion.query(consultaSql, cb);
 };
 
