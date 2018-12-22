@@ -11,40 +11,31 @@ function obtenerPeliculas(req, res) {
         return res.status(500).json("error en el servidor");
       }
       res.json({ peliculas: resultadoObtenerTodos, total: resultadoObtenerCantidad[0].totalPeliculas });
-      console.log(resultadoObtenerCantidad[0].totalPeliculas);
     });
   });
 };
 
 function obtenerInfoPelicula(req, res){
-  console.log(req.query);
-  console.log(req.params);
-  Peliculas.obtenerInfo(req.params.id, function(error, resultadoObtenerInfo){
-    if (error){
+  Peliculas.obtenerInfo(req.params.id, function(error, resultadoObtenerInfo) {
+    if (error) {
       return res.status(500).json("error en el servidor");
     }
-    console.log(resultadoObtenerInfo[0].genero);
     res.json({ pelicula: resultadoObtenerInfo[0], genero: resultadoObtenerInfo[0].genero, actores: resultadoObtenerInfo.map(function(s) {return {nombre: s.Actores};}) });
   });
 };
 
 function obtenerPeliculaRecomendada(req, res) {
-  Peliculas.obtenerRecomendadas(req.query, function(error, resultadoObtenerRecomendadas){
-  if (error){
-    return res.status(500).json("error en el servidor");
-  }
-  res.json({ peliculas: resultadoObtenerRecomendas });
-    // Peliculas.obtenerCantidad(req.query, function(error, resultadoObtenerCantidad){
-    //   if (error){
-    //     return res.status(500).json("error en el servidor");
-    //   }
-    //   res.json({ peliculas: resultadoObtenerTodos, total: resultadoObtenerCantidad[0].totalPeliculas });
-    //   console.log(resultadoObtenerCantidad[0].totalPeliculas);
-    // });
+  console.log("putamadre");
+  Peliculas.obtenerRecomendadas(req.query, function(error, resultadoObtenerRecomendadas) {
+    if (error) {
+      return res.status(500).json("error en el servidor");
+    }
+    res.json({ peliculas: resultadoObtenerRecomendas });
   });
 };
 
 module.exports = {
 	obtenerPeliculas: obtenerPeliculas,
-  obtenerInfoPelicula: obtenerInfoPelicula
+  obtenerInfoPelicula: obtenerInfoPelicula,
+  obtenerPeliculaRecomendada: obtenerPeliculaRecomendada
 };

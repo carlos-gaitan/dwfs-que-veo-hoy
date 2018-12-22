@@ -21,6 +21,7 @@ app.use(bodyParser.json());
 app.get('/peliculas', peliculasController.obtenerPeliculas);
 app.get('/generos', generosController.obtenerGeneros);
 app.get('/peliculas/:id', peliculasController.obtenerInfoPelicula);
+app.get('/peliculas/recomendacion', peliculasController.obtenerPeliculaRecomendada);
 
 
 //seteamos el puerto en el cual va a escuchar los pedidos la aplicación
