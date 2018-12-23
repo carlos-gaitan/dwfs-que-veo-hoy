@@ -29,7 +29,6 @@ function obtenerPeliculaRecomendada(req, res) {
     if (error) {
       return res.status(500).json("error en el servidor msj #5");
     }
-    console.log(resultadoObtenerRecomendadas);
     res.json({ peliculas: resultadoObtenerRecomendadas });
   });
 };

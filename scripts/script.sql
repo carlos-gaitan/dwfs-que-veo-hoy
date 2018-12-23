@@ -17,9 +17,6 @@ CREATE TABLE `pelicula` (
   FOREIGN KEY (`genero_id`) REFERENCES genero(`id`),
 );
 
--- el campo genero_id Ya se agrego!
--- ALTER TABLE pelicula ADD genero_id int(11) NOT NULL;
-
 CREATE TABLE `genero` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `nombre` varchar(30) NOT NULL,

@@ -58,7 +58,6 @@ Pelicula.obtenerCantidad = function(filtros, cb){
 
 
   consultaSql += ";";
-  //console.log(consultaSql);
   conexion.query(consultaSql, cb);
 };
 
@@ -115,7 +114,6 @@ Pelicula.obtenerTodos = function(filtros, cb){
 
 
   consultaSql += ";";
-  //console.log(consultaSql);
   conexion.query(consultaSql, cb);
 };
 
