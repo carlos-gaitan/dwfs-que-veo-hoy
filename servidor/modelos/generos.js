@@ -4,8 +4,9 @@ var Genero = function(id, nombre){
   this.id = id;
   this.nombre = nombre;
 };
+
 Genero.obtenerTodos = function(cb){
-  var consultaSql = "SELECT * from genero";
+  var consultaSql = `SELECT * from genero`;
   conexion.query(consultaSql, cb);
 };
 
